@@ -1,22 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HumSense</title>
-     <meta http-equiv="refresh" content="2"> <!-- Auto-refresh every 30 seconds -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-    <h1>HumSense - Humidity Sensor</h1>
-    <div class="main">
-        <div class="box">
-            <p>Temperature </p>
-            <p>{{ temp }} °C</p> 
-        </div>
-        <div class="box">
-            <p>Humidity</p>
-            <p>{{ humidity }} %</p> 
-        </div>
+    <div class="titleBar">
+        <h1>HumSense - Humidity Sensor</h1>
     </div>
+
+    <div class="main">
+        <div class="container">
+            <div class="card">
+                <p class="boxHeading">Temperature </p>
+                <p><span id="temperature">Loading...</span></p>
+            </div>
+            <div class="card">
+                <p class="boxHeading">Humidity</p>
+                <p><span id="humidity">Loading...</span></p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
+
 </html>
