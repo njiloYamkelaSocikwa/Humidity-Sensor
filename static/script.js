@@ -15,9 +15,6 @@ function updateReadings() {
         .catch(error => {
             console.error("Fetch error: ", error);
         });
-
-
-
 }
 
 document.addEventListener("DOMContentLoaded", () => {
