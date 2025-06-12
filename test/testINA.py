@@ -1,4 +1,4 @@
-from monitor import PowerMonitor
+from components.monitor import PowerMonitor
 import time
 
 def main():

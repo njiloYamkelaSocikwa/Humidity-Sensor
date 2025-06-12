@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, render_template
-from sensor import DHT22Sensor, SIMULATION_MODE
-from monitor import PowerMonitor
+from components.sensor import DHT22Sensor, SIMULATION_MODE
+from components.monitor import PowerMonitor
 import time
 
 app = Flask(__name__)
