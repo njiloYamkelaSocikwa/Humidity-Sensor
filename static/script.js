@@ -5,7 +5,6 @@ const currData = []
 const shvData = []
 
 function updateReadingsTH() {
-
     fetch('/api/readingsTH')
         .then(response => response.json())
         .then(data => {
@@ -34,7 +33,6 @@ function updateReadingsTH() {
 }
 
 function updateReadingsPM() {
-
     fetch('/api/readingsPM')
         .then(response => response.json())
         .then(data => {
@@ -65,6 +63,9 @@ function updateReadingsPM() {
             console.error("Fetch error: ", error);
         });
 }
+
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
     // Initial update
