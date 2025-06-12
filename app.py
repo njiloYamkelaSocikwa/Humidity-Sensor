@@ -2,8 +2,10 @@ from flask import Flask, jsonify, render_template
 from components.sensor import DHT22Sensor, SIMULATION_MODE
 from components.monitor import PowerMonitor
 import time
+import logging
 
 app = Flask(__name__)
+app.logger.setLevel(logging.WARNING)
 
 # Initialize sensor
 if not SIMULATION_MODE:

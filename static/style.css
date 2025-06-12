@@ -1,0 +1,70 @@
+
+
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  
+  gap: 10px;
+  padding: 30px 20px;
+  align-content: flex-start;
+  
+  
+}
+
+.card {
+  width: 150px;
+  height: 170px;
+  border-radius: 15px;
+  color: white;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  backdrop-filter: brightness(0.7);
+}
+
+.card-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+.card-data h2 {
+  margin: 0;
+  font-size: 2rem;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+h2 {
+  width: fit-content;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+.card.hum {
+  background-image: url('/static/images/humidity-pic.jpg');
+}
+
+.card.temp {
+  background-image: url('/static/images/temp.jpg');
+}
+
+.card.bus {
+  background-image: url('/static/images/power.png');
+}
+
+.card.shv {
+  background-image: url('/static/images/battery.png');
+}
+
+.card.curr {
+  background-image: url('/static/images/current.png');
+}

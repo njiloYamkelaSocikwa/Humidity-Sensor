@@ -1,17 +1,25 @@
-console.log("script.js loaded!");
+const tempData = []
+const humData = []
+const bvData = []
+const currData = []
+const shvData = []
 
 function updateReadingsTH() {
-    console.log("UpdateReadings1 Called...")
+
     fetch('/api/readingsTH')
         .then(response => response.json())
         .then(data => {
             if (data.error) {
                 console.error("Sensor Error: ", data.error);
             } else {
-                document.getElementById('temperature').textContent = data.temperature + " °C";
-                document.getElementById('humidity').textContent = data.humidity + " %";
+                let temp = data.temperature
+                let hum = data.humidity
 
+                document.getElementById('temperature').textContent = temp + " °C";
+                document.getElementById('humidity').textContent = hum + " %";
 
+                if (temp != null) tempData.push(temp)
+                if (hum != null) humData.push(hum)
 
                 // Update timestamp if available
                 if (data.timestamp) {
@@ -26,17 +34,26 @@ function updateReadingsTH() {
 }
 
 function updateReadingsPM() {
-    console.log("UpdateReadings2 Called...")
+
     fetch('/api/readingsPM')
         .then(response => response.json())
         .then(data => {
             if (data.error) {
                 console.error("Sensor Error: ", data.error);
             } else {
-                document.getElementById('busvolts').textContent = data.busVolts + " V";
-                document.getElementById('current').textContent = data.current + " mA";
-                document.getElementById('shVolts').textContent = data.shVolts + " mV";
 
+                let bs = data.busVolts
+                let cu = data.current
+                let sv = data.shVolts
+
+                document.getElementById('busvolts').textContent = bs + " V";
+                document.getElementById('current').textContent = cu + " mA";
+                document.getElementById('shVolts').textContent = sv + " mV";
+
+                if (bs != null) bvData.push()
+                if (cu != null) currData.push()
+                if (sv != null) shvData.push()
+                
                 // Update timestamp if available
                 if (data.timestamp) {
                     const date = new Date(data.timestamp * 1000);
@@ -49,7 +66,6 @@ function updateReadingsPM() {
         });
 }
 
-
 document.addEventListener("DOMContentLoaded", () => {
     // Initial update
     updateReadingsTH();
@@ -57,5 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Update every 2 seconds
     setInterval(updateReadingsPM, 1000);
-    setInterval(updateReadingsTH, 2000);
+    setInterval(updateReadingsTH, 1000);
+    
 });

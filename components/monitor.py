@@ -9,22 +9,18 @@ class PowerMonitor:
         self.last_busVolts = None
         self.last_shVolts = None
         self.last_current = None
+        
 
 
     def get_readings(self):
-        print("Reading Current...")
         try:
-            busVolts = round(sensor.bus_voltage, 10)
-            shVolts = round(sensor.shunt_voltage, 10)
-            current = round(sensor.current, 10)
+            busVolts = round(sensor.bus_voltage, 3)
+            shVolts = round(sensor.shunt_voltage, 3)
+            current = round(sensor.current, 3)
             
             self.last_busVolts = busVolts
             self.last_shVolts = shVolts
             self.last_current = current
-
-            # print(f"Bus Voltage: {busVolts} V")
-            # print(f"shVolts: {shVolts} mV")
-            # print(f"Current: {current} mA")
         
             return {
                 "busVolts": busVolts,
@@ -39,11 +35,3 @@ class PowerMonitor:
                 "shVolts": self.last_shVolts,
                 "current": self.last_current 
             }
-
-
-
-
-
-
-
-
