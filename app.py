@@ -31,22 +31,6 @@ def get_readings():
     readings = sensor.get_readings()
     return jsonify(readings)
 
-@app.route('/api/temperature')
-def get_temperature():
-    temperature = sensor.get_temperature()
-    return jsonify({
-        'temperature': temperature,
-        'timestamp': time.time()
-    })
-
-@app.route('/api/humidity')
-def get_humidity():
-    humidity = sensor.get_humidity()
-    return jsonify({
-        'humidity': humidity,
-        'timestamp': time.time()
-    })
-
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
 

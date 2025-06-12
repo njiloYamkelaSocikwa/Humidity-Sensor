@@ -19,8 +19,11 @@ except (ImportError, NotImplementedError):
     print("Running in simulation mode - hardware modules not available")
 
 class DHT22Sensor:
+ 
     def __init__(self, pin=None):
         self.simulation_mode = SIMULATION_MODE
+        self.last_temp = None
+        self.last_hum = None
         if not self.simulation_mode:
             try:
                 self.dht_device = adafruit_dht.DHT22(pin)
@@ -39,6 +42,8 @@ class DHT22Sensor:
             try:
                 temperature = self.dht_device.temperature
                 humidity = self.dht_device.humidity
+                self.last_temp = temperature
+                self.last_hum = humidity
                 return {
                     "temperature": temperature,
                     "humidity": humidity,
@@ -47,8 +52,8 @@ class DHT22Sensor:
             except RuntimeError as error:
                 print(f"Error reading from DHT22: {error}")
                 return {
-                    "temperature": None,
-                    "humidity": None,
+                    "temperature": self.last_temp,
+                    "humidity": self.last_hum,
                     "timestamp": time.time()
                 }
         else:
@@ -59,37 +64,4 @@ class DHT22Sensor:
                 "timestamp": time.time()
             }
             
-    def get_temperature(self):
-        """
-        Get the temperature reading from the DHT22 sensor.
-        
-        Returns:
-            float or None: Temperature in Celsius or None if reading fails
-        """
-        if not self.simulation_mode:
-            try:
-                return self.dht_device.temperature
-            except RuntimeError as error:
-                print(f"Error reading temperature: {error}")
-                return None
-        else:
-            # Simulated temperature
-            return round(random.uniform(20.0, 25.0), 1)
-            
-    def get_humidity(self):
-        """
-        Get the humidity reading from the DHT22 sensor.
-        
-        Returns:
-            float or None: Relative humidity percentage or None if reading fails
-        """
-        if not self.simulation_mode:
-            try:
-                return self.dht_device.humidity
-            except RuntimeError as error:
-                print(f"Error reading humidity: {error}")
-                return None
-        else:
-            # Simulated humidity
-            return round(random.uniform(40.0, 60.0), 1)
-
+ 
