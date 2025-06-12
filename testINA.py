@@ -11,12 +11,12 @@ def main():
     try:
         while True:
             # Get readings
-            readings = power_monitor.readCurrent()
+            readings = power_monitor.get_readings()
             
             # Print formatted readings
             print("\n===== Power Monitor Readings =====")
             print(f"Bus Voltage: {readings['busVolts']:.2f} V")
-            print(f"Power: {readings['power']:.2f} mW")
+            print(f"Shunt Volts (-): {readings['shVolts']:.2f} mW")
             print(f"Current: {readings['current']:.2f} mA")
             print("================================\n")
             
