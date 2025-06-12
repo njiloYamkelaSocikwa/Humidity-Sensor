@@ -1,56 +1,52 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, jsonify, render_template
+from sensor import DHT22Sensor, SIMULATION_MODE
 import time
-import random
-import adafruit_dht
-import board
-
-# Checking if the Adafruit module has been successfully imported
-try: 
-    correctOS = True
-    dhtDevice = adafruit_dht.DHT22(board.D4)
-    print("Successful import of DHT")
-except:
-    correctOS = False
-    print("Unsuccessful import of DHT")
-
 
 app = Flask(__name__)
+
+# Initialize sensor
+if not SIMULATION_MODE:
+    import board
+    try:
+        sensor = DHT22Sensor(pin=board.D4)
+        print("Successfully initialized DHT22 sensor with hardware")
+    except Exception as e:
+        print(f"Error initializing hardware sensor: {e}")
+        print("Falling back to simulation mode")
+        sensor = DHT22Sensor()  # Fallback to simulation mode
+else:
+    sensor = DHT22Sensor()  # No pin needed in simulation mode
+    print("Running with simulated DHT22 sensor")
+
+# Store last readings to handle sensor errors
+last_temperature = None
+last_humidity = None
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
+@app.route('/api/readings')
+def get_readings():
+    readings = sensor.get_readings()
+    return jsonify(readings)
 
-@app.route('/readings')
-def readings():
-    global lastHumReading, lastTempReading
+@app.route('/api/temperature')
+def get_temperature():
+    temperature = sensor.get_temperature()
+    return jsonify({
+        'temperature': temperature,
+        'timestamp': time.time()
+    })
 
-    if correctOS:
-        try:
- 
-            temp_read = dhtDevice.temperature
-            hum_read = dhtDevice.humidity
+@app.route('/api/humidity')
+def get_humidity():
+    humidity = sensor.get_humidity()
+    return jsonify({
+        'humidity': humidity,
+        'timestamp': time.time()
+    })
 
-            lastTempReading = temp_read
-            lastHumReading = hum_read
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
 
-            print(f"Temperature: {temp_read} °C, Humidity: {hum_read} %")
-            return jsonify(temperature=round(temp_read, 2), humidity=round(hum_read, 2))
-        
-        except Exception as e:
-            print(f"Error reading sensor: {e}")
-            if lastTempReading is None:
-                lastTempReading = 0.0
-            if lastHumReading is None:
-                lastHumReading = 0.0
-            return jsonify(temperature=round(lastTempReading, 2), humidity=round(lastHumReading, 2))
-    else:
-        temp_read = random.randint(1, 100)
-        hum_read = random.randint(1, 100)
-        print(f"Simulated Temperature: {temp_read} °C, Simulated Humidity: {hum_read} % ")
-        return jsonify(temperature=round(temp_read, 2), humidity=round(hum_read, 2))
-
-
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000, debug=True)

@@ -6,29 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HumSense</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 
 <body>
-    <div class="titleBar">
-        <h1>HumSense - Humidity Sensor</h1>
-    </div>
-
-    <div class="main">
-        <div class="container">
-            <div class="card">
-                <p class="boxHeading">Temperature </p>
-                <p><span id="temperature">Loading...</span></p>
+    <div class="container">
+        <div class="header">
+            <h1>HumSense Dashboard - created by njiloDev</h1>
+            <p>Real-time temperature and humidity monitoring</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Temperature</div>
+                    <div class="panel-body">
+                        <h2 id="temperature">-- °C</h2>
+                    </div>
+                </div>
             </div>
-            <div class="card">
-                <p class="boxHeading">Humidity</p>
-                <p><span id="humidity">Loading...</span></p>
+            
+            <div class="col-md-6">
+                <div class="panel panel-info">
+                    <div class="panel-heading">Humidity</div>
+                    <div class="panel-body">
+                        <h2 id="humidity">-- %</h2>
+                    </div>
+                </div>
             </div>
         </div>
-
+        
+        <div class="row">
+            <div class="col-md-12">
+                <p id="timestamp" class="text-muted">Last updated: --:--:--</p>
+            </div>
+        </div>
     </div>
+
+    <!-- Include scripts at the end of the body for better page load performance -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 

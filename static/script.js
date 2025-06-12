@@ -2,7 +2,7 @@ console.log("script.js loaded!");
 
 function updateReadings() {
     console.log("UpdateReadings Called...")
-    fetch('/readings')
+    fetch('/api/readings')
         .then(response => response.json())
         .then(data => {
             if (data.error) {
@@ -10,6 +10,12 @@ function updateReadings() {
             } else {
                 document.getElementById('temperature').textContent = data.temperature + " °C";
                 document.getElementById('humidity').textContent = data.humidity + " %";
+                
+                // Update timestamp if available
+                if (data.timestamp) {
+                    const date = new Date(data.timestamp * 1000);
+                    document.getElementById('timestamp').textContent = "Last updated: " + date.toLocaleTimeString();
+                }
             }
         })
         .catch(error => {
@@ -18,6 +24,9 @@ function updateReadings() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Initial update
     updateReadings();
+    
+    // Update every 2 seconds
     setInterval(updateReadings, 2000);
 });
