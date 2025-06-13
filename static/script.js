@@ -4,8 +4,6 @@ const bvData = []
 const currData = []
 const shvData = []
 
-const valueDisplay = document.getElementById('value-display');
-
 function updateReadingsTH() {
     fetch('/api/readingsTH')
         .then(response => response.json())
@@ -22,13 +20,10 @@ function updateReadingsTH() {
                 if (temp != null) tempData.push(temp)
                 if (hum != null) humData.push(hum)
 
-                valueDisplay.textContent = `Current value: ${newValue}`;
-
-
             }
         })
         .catch(error => {
-            console.error("Fetch error: ", error);
+            console.error("Fetch error (TH SENSOR): ", error);
         });
 }
 
@@ -65,14 +60,12 @@ function checkSimulationMode() {
        .then(response => response.json())
        .then(data => {
          const modeLed = document.getElementById('mode-led');
-         const modeText = document.getElementById('mode-text');
          
          if (!data.simulation_mode) {
            modeLed.className = 'led green';
-           modeText.textContent = 'Simulation';
          } else {
            modeLed.className = 'led blue';
-           modeText.textContent = 'Hardware';
+           
          }
        })
        .catch(error => {
