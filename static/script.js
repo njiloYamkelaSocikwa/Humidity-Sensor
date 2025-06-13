@@ -4,6 +4,8 @@ const bvData = []
 const currData = []
 const shvData = []
 
+const valueDisplay = document.getElementById('value-display');
+
 function updateReadingsTH() {
     fetch('/api/readingsTH')
         .then(response => response.json())
@@ -20,11 +22,9 @@ function updateReadingsTH() {
                 if (temp != null) tempData.push(temp)
                 if (hum != null) humData.push(hum)
 
-                // Update timestamp if available
-                if (data.timestamp) {
-                    const date = new Date(data.timestamp * 1000);
-                    document.getElementById('timestamp').textContent = "Last updated: " + date.toLocaleTimeString();
-                }
+                valueDisplay.textContent = `Current value: ${newValue}`;
+
+
             }
         })
         .catch(error => {
@@ -51,12 +51,8 @@ function updateReadingsPM() {
                 if (bs != null) bvData.push()
                 if (cu != null) currData.push()
                 if (sv != null) shvData.push()
-                
-                // Update timestamp if available
-                if (data.timestamp) {
-                    const date = new Date(data.timestamp * 1000);
-                    document.getElementById('timestamp').textContent = "Last updated: " + date.toLocaleTimeString();
-                }
+
+
             }
         })
         .catch(error => {
@@ -64,16 +60,38 @@ function updateReadingsPM() {
         });
 }
 
-
+function checkSimulationMode() {
+     fetch('/api/mode')
+       .then(response => response.json())
+       .then(data => {
+         const modeLed = document.getElementById('mode-led');
+         const modeText = document.getElementById('mode-text');
+         
+         if (!data.simulation_mode) {
+           modeLed.className = 'led green';
+           modeText.textContent = 'Simulation';
+         } else {
+           modeLed.className = 'led blue';
+           modeText.textContent = 'Hardware';
+         }
+       })
+       .catch(error => {
+         console.error("Fetch error checking mode: ", error);
+       });
+   }
 
 
 document.addEventListener("DOMContentLoaded", () => {
     // Initial update
     updateReadingsTH();
     updateReadingsPM();
+    checkSimulationMode();
 
     // Update every 2 seconds
-    setInterval(updateReadingsPM, 1000);
-    setInterval(updateReadingsTH, 1000);
-    
+    setInterval(updateReadingsPM, 2000);
+    setInterval(updateReadingsTH, 2000);
+    setInterval(updateCharts, 1000)
+
+
 });
+

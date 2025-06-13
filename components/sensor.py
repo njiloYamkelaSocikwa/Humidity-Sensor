@@ -26,7 +26,7 @@ class DHT22Sensor:
         self.last_hum = None
         if not self.simulation_mode:
             try:
-                self.dht_device = adafruit_dht.DHT22(pin)
+                self.dht_device = adafruit_dht.DHT22(pin) # type: ignore
                 print(f"DHT22 sensor initialized on pin {pin}")
             except Exception as e:
                 print(f"Failed to initialize DHT22 sensor: {e}")
@@ -40,8 +40,8 @@ class DHT22Sensor:
     def get_readings(self):
         if not self.simulation_mode:
             try:
-                temperature = self.dht_device.temperature
-                humidity = self.dht_device.humidity
+                temperature = self.dht_device.temperature # type: ignore
+                humidity = self.dht_device.humidity # type: ignore
                 self.last_temp = temperature
                 self.last_hum = humidity
                 return {
@@ -59,7 +59,7 @@ class DHT22Sensor:
         else:
             # Generate simulated data in simulation mode
             return {
-                "temperature": round(random.uniform(20.0, 25.0), 1),
+                "temperature": round(random.uniform(20.0, 22.0), 1),
                 "humidity": round(random.uniform(40.0, 60.0), 1),
                 "timestamp": time.time()
             }
