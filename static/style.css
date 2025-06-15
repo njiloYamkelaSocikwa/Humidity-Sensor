@@ -16,7 +16,8 @@
   --platinum-hsl: hsla(18, 17%, 89%, 1);
 }
 
-html, body {
+html,
+body {
   background-color: var(--rich-black) !important;
   width: 100% !important;
   overflow-x: hidden !important;
@@ -32,8 +33,22 @@ body {
 }
 
 /* Force background on all major elements */
-.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl,
-.row, .col, div[class^="col-"], main, section, header, footer, aside, nav {
+.container,
+.container-fluid,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl,
+.container-xxl,
+.row,
+.col,
+div[class^="col-"],
+main,
+section,
+header,
+footer,
+aside,
+nav {
   background-color: var(--rich-black) !important;
   color: white
 }
@@ -47,7 +62,8 @@ body {
 }
 
 .card {
-  flex: 1 1 calc(10%); /* 3 cards per row with spacing */
+  flex: 1 1 calc(10%);
+  /* 3 cards per row with spacing */
   min-width: 50px;
   height: 200px;
   border-radius: 15px;
@@ -65,7 +81,8 @@ body {
 /* Responsive for phones */
 @media (max-width: 600px) {
   .card {
-    flex: 1 1 40%; /* Take full width on small screens */
+    flex: 1 1 40%;
+    /* Take full width on small screens */
   }
 }
 
@@ -153,14 +170,16 @@ h2 {
 }
 
 /* Add a subtle glow effect to headings */
-h1, h2, .card-title {
+h1,
+h2,
+.card-title {
   text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
 }
 
 /* Add border glow to container elements */
 .container {
-  
- 
+
+
   border-radius: 10px;
   padding: 15px;
   margin-bottom: 20px;
@@ -189,35 +208,156 @@ footer {
 }
 
 /* Floating box */
-    #statusBox {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: black;
-      border: 1px solid #ccc;
-      border-radius: 12px;
-      padding: 10px 15px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.2);
-      display: flex;
-      align-items: center;
-      font-family: sans-serif;
-      z-index: 1000;
-    }
+#statusBox {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: black;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 10px 15px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  font-family: sans-serif;
+  z-index: 1000;
+}
 
-    /* LED circle */
-    .led {
-      width: 15px;
-      height: 15px;
-      border-radius: 50%;
-      margin-left: 10px;
-      background-color: red; /* default color */
-      box-shadow: 0 0 5px rgba(0,0,0,0.2);
-    }
+/* LED circle */
+.led {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-left: 10px;
+  background-color: red;
+  /* default color */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
 
-    .green {
-      background-color: green;
-    }
+.green {
+  background-color: green;
+}
 
-    .red {
-      background-color: red;
-    }
+.red {
+  background-color: red;
+}
+
+
+
+.led {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  position: relative;
+  background: radial-gradient(circle at 30% 30%, #ff4444, #cc0000);
+  border: 1px solid #333;
+  box-shadow:
+    0 0 4px rgba(255, 68, 68, 0.5),
+    0 0 8px rgba(255, 68, 68, 0.3),
+    0 0 12px rgba(255, 68, 68, 0.2),
+    inset 0 1px 3px rgba(255, 255, 255, 0.3),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.3);
+  animation: pulse 2s ease-in-out infinite alternate;
+}
+
+.led::before {
+  content: '';
+  position: absolute;
+  top: 15%;
+  left: 25%;
+  width: 35%;
+  height: 35%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8), transparent);
+  border-radius: 50%;
+  filter: blur(0.8px);
+}
+
+.led::after {
+  content: '';
+  position: absolute;
+  top: 60%;
+  left: 60%;
+  width: 15%;
+  height: 15%;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  filter: blur(0.4px);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow:
+      0 0 5px rgba(255, 68, 68, 0.5),
+      0 0 10px rgba(255, 68, 68, 0.3),
+      0 0 15px rgba(255, 68, 68, 0.2),
+      inset 0 2px 4px rgba(255, 255, 255, 0.3),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  100% {
+    box-shadow:
+      0 0 10px rgba(255, 68, 68, 0.8),
+      0 0 20px rgba(255, 68, 68, 0.5),
+      0 0 30px rgba(255, 68, 68, 0.3),
+      inset 0 2px 4px rgba(255, 255, 255, 0.3),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Green LED variant */
+.led.green {
+  background: radial-gradient(circle at 30% 30%, #44ff44, #00cc00);
+  box-shadow:
+    0 0 5px rgba(68, 255, 68, 0.5),
+    0 0 10px rgba(68, 255, 68, 0.3),
+    0 0 15px rgba(68, 255, 68, 0.2),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes pulseGreen {
+  0% {
+    box-shadow:
+      0 0 5px rgba(68, 255, 68, 0.5),
+      0 0 10px rgba(68, 255, 68, 0.3),
+      0 0 15px rgba(68, 255, 68, 0.2),
+      inset 0 2px 4px rgba(255, 255, 255, 0.3),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  100% {
+    box-shadow:
+      0 0 10px rgba(68, 255, 68, 0.8),
+      0 0 20px rgba(68, 255, 68, 0.5),
+      0 0 30px rgba(68, 255, 68, 0.3),
+      inset 0 2px 4px rgba(255, 255, 255, 0.3),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.led.green {
+  animation: pulseGreen 2s ease-in-out infinite alternate;
+}
+
+/* Off state */
+.led.off {
+  background: radial-gradient(circle at 30% 30%, #444, #222);
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, 0.1),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.5);
+  animation: none;
+}
+
+/* Demo labels */
+.demo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.label {
+  color: #ccc;
+  font-size: 14px;
+  text-align: center;
+}

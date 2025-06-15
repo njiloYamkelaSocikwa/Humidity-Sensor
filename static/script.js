@@ -65,6 +65,7 @@ function checkSimulationMode() {
            modeLed.className = 'led green';
          } else {
            modeLed.className = 'led blue';
+           
          }
        })
        .catch(error => {
@@ -82,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Update every 2 seconds
     setInterval(updateReadingsPM, 2000);
     setInterval(updateReadingsTH, 2000);
-    setInterval(updateCharts, 1000)
+    setInterval(updateCharts, 10)
 
 
 });
