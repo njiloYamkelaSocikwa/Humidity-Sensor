@@ -65,7 +65,6 @@ function checkSimulationMode() {
            modeLed.className = 'led green';
          } else {
            modeLed.className = 'led blue';
-           
          }
        })
        .catch(error => {
