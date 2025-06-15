@@ -1,33 +1,32 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify
+from flask_cors import CORS
 from components.sensor import DHT22Sensor, SIMULATION_MODE
 from components.monitor import PowerMonitor, sim_mode
-import time
 import logging
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 app.logger.setLevel(logging.WARNING)
 
 
+# Initialize sensors (same as before)
 if not SIMULATION_MODE:
     import board
     try:
         sensor = DHT22Sensor(pin=board.D4)
-        monitor = PowerMonitor()  # Initialize monitor here
+        monitor = PowerMonitor()
         print("Successfully initialized DHT22 sensor with hardware")
     except Exception as e:
         print(f"Error initializing hardware sensor: {e}")
         print("Falling back to simulation mode")
-        sensor = DHT22Sensor()  # Fallback to simulation mode
-        monitor = PowerMonitor()  # Also initialize monitor in fallback
+        sensor = DHT22Sensor()
+        monitor = PowerMonitor()
 else:
-    sensor = DHT22Sensor()  # No pin needed in simulation mode
-    monitor = PowerMonitor()  # Initialize monitor in simulation mode
+    sensor = DHT22Sensor()
+    monitor = PowerMonitor()
     print("Running with simulated DHT22 sensor")
 
-@app.route('/')
-def index():
-    return render_template('index.html')
-
+# API endpoints
 @app.route('/api/readingsTH')
 def get_readingsTH():
     readings = sensor.get_readings()
@@ -40,11 +39,8 @@ def get_readingsPM():
 
 @app.route('/api/readings')
 def get_readings():
-    # Combined endpoint that returns both sensor and monitor readings
     th_readings = sensor.get_readings()
     pm_readings = monitor.get_readings()
-    
-    
     combined = {**th_readings, **pm_readings}
     return jsonify(combined)
 
@@ -55,10 +51,4 @@ def get_mode():
     })
 
 if __name__ == '__main__':
-    print("\n==== Server Information ====")
-    print(f"Access URLs:")
-    print(f"Local: http://127.0.0.1:5000")
-    print(f"Network: Check your IP address with 'ipconfig' in Windows")
-    print("=============================\n")
     app.run(host='0.0.0.0', port=5000, debug=True)
-

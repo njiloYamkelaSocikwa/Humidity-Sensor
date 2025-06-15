@@ -1,3 +1,4 @@
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 const tempData = []
 const humData = []
 const bvData = []
@@ -5,7 +6,7 @@ const currData = []
 const shvData = []
 
 function updateReadingsTH() {
-    fetch('/api/readingsTH')
+    fetch(`${API_URL}/api/readingsTH`)
         .then(response => response.json())
         .then(data => {
             if (data.error) {
@@ -28,7 +29,7 @@ function updateReadingsTH() {
 }
 
 function updateReadingsPM() {
-    fetch('/api/readingsPM')
+    fetch(`${API_URL}/api/readingsPM`)
         .then(response => response.json())
         .then(data => {
             if (data.error) {
@@ -56,7 +57,7 @@ function updateReadingsPM() {
 }
 
 function checkSimulationMode() {
-     fetch('/api/mode')
+     fetch(`${API_URL}/api/mode`)
        .then(response => response.json())
        .then(data => {
          const modeLed = document.getElementById('mode-led');

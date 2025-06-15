@@ -266,7 +266,7 @@ const humChart = new Chart(humCtx, {
 // This function is no longer used - updateChartsFromCache in script.js is used instead
 
 function updateCharts() {
-    fetch('/api/readings')
+    fetch(`${API_URL}/api/readings`)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);

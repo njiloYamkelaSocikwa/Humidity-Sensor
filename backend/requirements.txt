@@ -1,6 +1,5 @@
 Adafruit-Blinka==8.58.1
 adafruit-circuitpython-busdevice==5.2.12
-adafruit-circuitpython-connectionmanager==3.1.4
 adafruit-circuitpython-dht==4.0.8
 adafruit-circuitpython-ina219==3.4.28
 adafruit-circuitpython-register==1.10.3
@@ -12,6 +11,7 @@ binho-host-adapter==0.1.6
 blinker==1.9.0
 click==8.2.1
 Flask==3.1.1
+flask-cors==4.0.0
 itsdangerous==2.2.0
 Jinja2==3.1.6
 MarkupSafe==3.0.2
