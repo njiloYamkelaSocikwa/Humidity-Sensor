@@ -19,7 +19,6 @@ function updateReadingsTH() {
 
                 if (temp != null) tempData.push(temp)
                 if (hum != null) humData.push(hum)
-
             }
         })
         .catch(error => {
@@ -56,22 +55,22 @@ function updateReadingsPM() {
 }
 
 function checkSimulationMode() {
-     fetch('/api/mode')
-       .then(response => response.json())
-       .then(data => {
-         const modeLed = document.getElementById('mode-led');
-         
-         if (!data.simulation_mode) {
-           modeLed.className = 'led green';
-         } else {
-           modeLed.className = 'led blue';
-           
-         }
-       })
-       .catch(error => {
-         console.error("Fetch error checking mode: ", error);
-       });
-   }
+    fetch('/api/mode')
+        .then(response => response.json())
+        .then(data => {
+            const modeLed = document.getElementById('mode-led');
+
+            if (!data.simulation_mode) {
+                modeLed.className = 'led green';
+            } else {
+                modeLed.className = 'led blue';
+
+            }
+        })
+        .catch(error => {
+            console.error("Fetch error checking mode: ", error);
+        });
+}
 
 
 document.addEventListener("DOMContentLoaded", () => {

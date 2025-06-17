@@ -55,10 +55,5 @@ def get_mode():
     })
 
 if __name__ == '__main__':
-    print("\n==== Server Information ====")
-    print(f"Access URLs:")
-    print(f"Local: http://127.0.0.1:5000")
-    print(f"Network: Check your IP address with 'ipconfig' in Windows")
-    print("=============================\n")
     app.run(host='0.0.0.0', port=5000, debug=True)
 

@@ -1,0 +1,47 @@
+Date : 2025-06-13 11:59:49
+Directory : /home/njilo/Documents/Humidity-Sensor
+Total : 12 files,  751 codes, 47 comments, 137 blanks, all 935 lines
+
+Languages
++------------------+------------+------------+------------+------------+------------+
+| language         | files      | code       | comment    | blank      | total      |
++------------------+------------+------------+------------+------------+------------+
+| JavaScript       |          2 |        260 |         19 |         39 |        318 |
+| Python           |          5 |        185 |          8 |         39 |        232 |
+| PostCSS          |          1 |        176 |         14 |         33 |        223 |
+| HTML             |          1 |         89 |          2 |         15 |        106 |
+| pip requirements |          1 |         24 |          0 |          1 |         25 |
+| Docker           |          1 |         13 |          4 |          5 |         22 |
+| Markdown         |          1 |          4 |          0 |          5 |          9 |
++------------------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                        | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                           |         12 |        751 |         47 |        137 |        935 |
+| . (Files)                                                   |          4 |         87 |          5 |         24 |        116 |
+| components                                                  |          2 |        106 |          3 |         17 |        126 |
+| static                                                      |          3 |        436 |         33 |         72 |        541 |
+| templates                                                   |          1 |         89 |          2 |         15 |        106 |
+| test                                                        |          2 |         33 |          4 |          9 |         46 |
++-------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| filename                                                    | language         | code       | comment    | blank      | total      |
++-------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| /home/njilo/Documents/Humidity-Sensor/Dockerfile            | Docker           |         13 |          4 |          5 |         22 |
+| /home/njilo/Documents/Humidity-Sensor/ReadMe.md             | Markdown         |          4 |          0 |          5 |          9 |
+| /home/njilo/Documents/Humidity-Sensor/app.py                | Python           |         46 |          1 |         13 |         60 |
+| /home/njilo/Documents/Humidity-Sensor/components/monitor.py | Python           |         48 |          0 |         11 |         59 |
+| /home/njilo/Documents/Humidity-Sensor/components/sensor.py  | Python           |         58 |          3 |          6 |         67 |
+| /home/njilo/Documents/Humidity-Sensor/requirements.txt      | pip requirements |         24 |          0 |          1 |         25 |
+| /home/njilo/Documents/Humidity-Sensor/static/charts.js      | JavaScript       |        191 |         17 |         20 |        228 |
+| /home/njilo/Documents/Humidity-Sensor/static/script.js      | JavaScript       |         69 |          2 |         19 |         90 |
+| /home/njilo/Documents/Humidity-Sensor/static/style.css      | PostCSS          |        176 |         14 |         33 |        223 |
+| /home/njilo/Documents/Humidity-Sensor/templates/index.html  | HTML             |         89 |          2 |         15 |        106 |
+| /home/njilo/Documents/Humidity-Sensor/test/testDHT.py       | Python           |         12 |          0 |          2 |         14 |
+| /home/njilo/Documents/Humidity-Sensor/test/testINA.py       | Python           |         21 |          4 |          7 |         32 |
+| Total                                                       |                  |        751 |         47 |        137 |        935 |
++-------------------------------------------------------------+------------------+------------+------------+------------+------------+

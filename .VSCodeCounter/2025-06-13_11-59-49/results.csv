@@ -1,0 +1,14 @@
+"filename", "language", "Markdown", "Docker", "HTML", "JavaScript", "PostCSS", "Python", "pip requirements", "comment", "blank", "total"
+"/home/njilo/Documents/Humidity-Sensor/Dockerfile", "Docker", 0, 13, 0, 0, 0, 0, 0, 4, 5, 22
+"/home/njilo/Documents/Humidity-Sensor/ReadMe.md", "Markdown", 4, 0, 0, 0, 0, 0, 0, 0, 5, 9
+"/home/njilo/Documents/Humidity-Sensor/app.py", "Python", 0, 0, 0, 0, 0, 46, 0, 1, 13, 60
+"/home/njilo/Documents/Humidity-Sensor/components/monitor.py", "Python", 0, 0, 0, 0, 0, 48, 0, 0, 11, 59
+"/home/njilo/Documents/Humidity-Sensor/components/sensor.py", "Python", 0, 0, 0, 0, 0, 58, 0, 3, 6, 67
+"/home/njilo/Documents/Humidity-Sensor/requirements.txt", "pip requirements", 0, 0, 0, 0, 0, 0, 24, 0, 1, 25
+"/home/njilo/Documents/Humidity-Sensor/static/charts.js", "JavaScript", 0, 0, 0, 191, 0, 0, 0, 17, 20, 228
+"/home/njilo/Documents/Humidity-Sensor/static/script.js", "JavaScript", 0, 0, 0, 69, 0, 0, 0, 2, 19, 90
+"/home/njilo/Documents/Humidity-Sensor/static/style.css", "PostCSS", 0, 0, 0, 0, 176, 0, 0, 14, 33, 223
+"/home/njilo/Documents/Humidity-Sensor/templates/index.html", "HTML", 0, 0, 89, 0, 0, 0, 0, 2, 15, 106
+"/home/njilo/Documents/Humidity-Sensor/test/testDHT.py", "Python", 0, 0, 0, 0, 0, 12, 0, 0, 2, 14
+"/home/njilo/Documents/Humidity-Sensor/test/testINA.py", "Python", 0, 0, 0, 0, 0, 21, 0, 4, 7, 32
+"Total", "-", 4, 13, 89, 260, 176, 185, 24, 47, 137, 935

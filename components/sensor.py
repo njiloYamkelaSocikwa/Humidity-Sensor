@@ -26,7 +26,7 @@ class DHT22Sensor:
         self.last_hum = None
         if not self.simulation_mode:
             try:
-                self.dht_device = adafruit_dht.DHT22(pin) # type: ignore
+                self.dht_device = adafruit_dht.DHT22(pin, use_pulseio=False) # type: ignore
                 print(f"DHT22 sensor initialized on pin {pin}")
             except Exception as e:
                 print(f"Failed to initialize DHT22 sensor: {e}")

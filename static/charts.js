@@ -1,5 +1,34 @@
-// Temperature and Humidity Chart
+// Common chart options with animations disabled
+const noAnimationOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    animation: false, // Completely disable all animations
+    animations: {
+        colors: false,
+        x: false,
+        y: false
+    },
+    transitions: {
+        active: {
+            animation: {
+                duration: 0 // Set duration to 0 for any required transitions
+            }
+        }
+    },
+    elements: {
+        line: {
+            tension: 0.4 // Keep the smooth line curves without animation
+        }
+    }
+};
+
+// Temperature Chart
 const tempCtx = document.getElementById('tempChart').getContext('2d');
+// Create gradient for temperature chart
+const tempGradient = tempCtx.createLinearGradient(0, 0, 0, 400);
+tempGradient.addColorStop(0, 'rgba(231, 224, 221, 0.3)');
+tempGradient.addColorStop(1, 'rgba(231, 224, 221, 0.0)');
+
 const tempChart = new Chart(tempCtx, {
     type: 'line',
     data: {
@@ -9,87 +38,115 @@ const tempChart = new Chart(tempCtx, {
                 label: 'Temperature (°C)',
                 data: [],
                 borderColor: '#E7E0DD',
-                tension: 0.4
+                backgroundColor: tempGradient,
+                pointRadius: 0,
+                fill: true
             }
         ]
     },
     options: {
-        responsive: true,
+        ...noAnimationOptions,
         scales: {
             y: {
-
+                suggestedMin: 20,
+                suggestedMax: 30
             },
             x: {
                 ticks: {
-                    display: false
+                    callback: function (value, index, ticks) {
+                        return index % 2 === 0 ? this.getLabelForValue(value) : '';
+                    }
                 }
             }
         }
     }
 });
 
-// Temperature and Humidity Chart
+// Bus Voltage Chart
 const busCtx = document.getElementById('busChart').getContext('2d');
+const busGradient = busCtx.createLinearGradient(0, 0, 0, 400);
+busGradient.addColorStop(0, 'rgba(230, 255, 0, 0.3)');
+busGradient.addColorStop(1, 'rgba(230, 255, 0, 0.0)');
+
 const busChart = new Chart(busCtx, {
     type: 'line',
     data: {
         labels: [],
         datasets: [
             {
-                label: 'Bus Voltage (%)',
+                label: 'Bus Voltage (V)',
                 data: [],
                 borderColor: '#E6FF00',
-                tension: 0.4
+                backgroundColor: busGradient,
+                pointRadius: 0,
+                fill: true
             }
         ]
     },
     options: {
+        ...noAnimationOptions,
         scales: {
             y: {
-
-
+                 suggestedMin: 0,
+                suggestedMax: 5,
+                beginAtZero: true
             },
             x: {
                 ticks: {
-                    display: false
+                    callback: function (value, index, ticks) {
+                        return index % 2 === 0 ? this.getLabelForValue(value) : '';
+                    }
                 }
             }
         }
     }
 });
 
-// Temperature and Humidity Chart
+// Shunt Voltage Chart
 const shvCtx = document.getElementById('shvChart').getContext('2d');
+// Create gradient for shunt voltage chart
+const shvGradient = shvCtx.createLinearGradient(0, 0, 0, 400);
+shvGradient.addColorStop(0, 'rgba(255, 63, 242, 0.3)');
+shvGradient.addColorStop(1, 'rgba(255, 63, 242, 0.0)');
+
 const shvChart = new Chart(shvCtx, {
     type: 'line',
     data: {
         labels: [],
         datasets: [
             {
-                label: 'Shunt Voltage (mA)',
+                label: 'Shunt Voltage (mV)',
                 data: [],
                 borderColor: '#FF3FF2',
-                tension: 0.4
+                backgroundColor: shvGradient,
+                pointRadius: 0,
+                fill: true
             }
         ]
     },
     options: {
+        ...noAnimationOptions,
         scales: {
-            y: {
 
-
-            },
             x: {
                 ticks: {
-                    display: false
+                    callback: function (value, index, ticks) {
+                        // Show every 2nd label
+                        return index % 2 === 0 ? this.getLabelForValue(value) : '';
+                    }
                 }
             }
         }
     }
 });
 
-// Temperature and Humidity Chart
+// Current Chart
 const curCtx = document.getElementById('curChart').getContext('2d');
+// Create gradient for current chart
+const curGradient = curCtx.createLinearGradient(0, 0, 0, 400);
+curGradient.addColorStop(0, 'rgba(0, 255, 0, 0.3)');
+curGradient.addColorStop(1, 'rgba(0, 255, 0, 0.0)');
+
 const curChart = new Chart(curCtx, {
     type: 'line',
     data: {
@@ -98,28 +155,39 @@ const curChart = new Chart(curCtx, {
             {
                 label: 'Current (mA)',
                 data: [],
-                borderColor: '',
                 borderColor: '#00FF00',
-                tension: 0.4
+                backgroundColor: curGradient,
+                pointRadius: 0,
+                fill: true
             }
         ]
     },
     options: {
+        ...noAnimationOptions,
         scales: {
             y: {
-
+                 suggestedMin: -1,
+                suggestedMax: 1
             },
             x: {
                 ticks: {
-                    display: false
+                    callback: function (value, index, ticks) {
+                        // Show every 2nd label
+                        return index % 2 === 0 ? this.getLabelForValue(value) : '';
+                    }
                 }
             }
         }
     }
 });
 
-// Temperature and Humidity Chart
+// Humidity Chart
 const humCtx = document.getElementById('humChart').getContext('2d');
+// Create gradient for humidity chart
+const humGradient = humCtx.createLinearGradient(0, 0, 0, 400);
+humGradient.addColorStop(0, 'rgba(54, 162, 235, 0.3)');
+humGradient.addColorStop(1, 'rgba(54, 162, 235, 0.0)');
+
 const humChart = new Chart(humCtx, {
     type: 'line',
     data: {
@@ -129,96 +197,86 @@ const humChart = new Chart(humCtx, {
                 label: 'Humidity (%)',
                 data: [],
                 borderColor: 'rgb(54, 162, 235)',
-                tension: 0.4
+                backgroundColor: humGradient,
+                pointRadius: 0,
+                fill: true
             }
         ]
     },
     options: {
+        ...noAnimationOptions,
         scales: {
             y: {
                 beginAtZero: true,
                 max: 100
-
             },
             x: {
                 ticks: {
-                    display: false
+                    callback: function (value, index, ticks) {
+                        // Show every 2nd label
+                        return index % 2 === 0 ? this.getLabelForValue(value) : '';
+                    }
                 }
             }
         }
     }
 });
 
+// Simplified updateCharts function with no animations
 function updateCharts() {
-    fetch('/api/readings')
+    // Fetch temperature/humidity data
+    fetch('/api/readingsTH')
         .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             return response.json();
         })
-        .then(data => {
-            console.log('Fetched data:', data); // Debugging log
-            const timestamp = new Date().toLocaleTimeString();
-
-            // Update Temperature Chart
-            tempChart.data.labels.push(timestamp);
-            tempChart.data.datasets[0].data.push(data.temperature);
-            // Keep only the last 20 data points
-            if (tempChart.data.labels.length > 20) {
-                tempChart.data.labels = tempChart.data.labels.slice(-20);
-                tempChart.data.datasets[0].data = tempChart.data.datasets[0].data.slice(-20);
-            }
-            tempChart.update();
-
-            // Update Humidity Chart
-            humChart.data.labels.push(timestamp);
-            humChart.data.datasets[0].data.push(data.humidity);
-            // Keep only the last 20 data points
-            if (humChart.data.labels.length > 20) {
-                humChart.data.labels = humChart.data.labels.slice(-20);
-                humChart.data.datasets[0].data = humChart.data.datasets[0].data.slice(-20);
-            }
-            humChart.update();
-
-            // Update Bus Voltage Chart
-            busChart.data.labels.push(timestamp);
-            busChart.data.datasets[0].data.push(data.busVolts);
-            // Keep only the last 20 data points
-            if (busChart.data.labels.length > 20) {
-                busChart.data.labels = busChart.data.labels.slice(-20);
-                busChart.data.datasets[0].data = busChart.data.datasets[0].data.slice(-20);
-            }
-            busChart.update();
-
-            // Update Shunt Voltage Chart
-            shvChart.data.labels.push(timestamp);
-            shvChart.data.datasets[0].data.push(data.shVolts);
-            // Keep only the last 20 data points
-            if (shvChart.data.labels.length > 20) {
-                shvChart.data.labels = shvChart.data.labels.slice(-20);
-                shvChart.data.datasets[0].data = shvChart.data.datasets[0].data.slice(-20);
-            }
-            shvChart.update();
-
-            // Update Current Chart
-            curChart.data.labels.push(timestamp);
-            curChart.data.datasets[0].data.push(data.current);
-            // Keep only the last 20 data points
-            if (curChart.data.labels.length > 20) {
-                curChart.data.labels = curChart.data.labels.slice(-20);
-                curChart.data.datasets[0].data = curChart.data.datasets[0].data.slice(-20);
-            }
-            curChart.update();
-
-            updateTimestamp();
+        .then(thData => {
+            // Fetch power monitor data
+            return fetch('/api/readingsPM')
+                .then(response => {
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    return response.json();
+                })
+                .then(pmData => {
+                    const timestamp = new Date().toLocaleTimeString();
+                    
+                    // Update each chart without animation
+                    const updateChartNoAnimation = (chart, newValue) => {
+                        // Add new data point
+                        chart.data.labels.push(timestamp);
+                        chart.data.datasets[0].data.push(newValue);
+                        
+                        // Remove oldest data point if needed
+                        if (chart.data.labels.length > 20) {
+                            chart.data.labels.shift();
+                            chart.data.datasets[0].data.shift();
+                        }
+                    };
+                    
+                    // Update all charts
+                    updateChartNoAnimation(tempChart, thData.temperature);
+                    updateChartNoAnimation(humChart, thData.humidity);
+                    updateChartNoAnimation(busChart, pmData.busVolts);
+                    updateChartNoAnimation(shvChart, pmData.shVolts);
+                    updateChartNoAnimation(curChart, pmData.current);
+                    
+                    // Force immediate update without animations
+                    tempChart.update();
+                    humChart.update();
+                    busChart.update();
+                    shvChart.update();
+                    curChart.update();
+                    
+                    // Update timestamp
+                    updateTimestamp();
+                });
         })
         .catch(error => {
             console.error('Error updating charts:', error);
         });
 }
 
-// Update every 2 seconds
+// Update charts at regular interval
 setInterval(updateCharts, 800);
 
 // Update the timestamp
